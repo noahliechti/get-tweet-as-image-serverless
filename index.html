@@ -9,15 +9,40 @@
   <body>
     <!-- action="/.netlify/functions/image" method="get" -->
     <form onsubmit="getTweet(event)">
-      <input type="url" name="link" /><button type="submit">Submit</button>
+      <input type="url" name="link" /><br />
+      <label for="language">Language</label><br />
+      <select name="language" id="language">
+        <option value="en">English</option>
+        <option value="de">German</option>
+      </select>
+      <p>Theme</p>
+      <input
+        type="radio"
+        id="light"
+        name="theme"
+        value="light"
+        checked="checked"
+      />
+      <label for="light">Light</label><br />
+      <input type="radio" id="dark" name="theme" value="dark" />
+      <label for="dark">Dark</label><br />
+      <button type="submit">Submit</button>
     </form>
     <script>
       function getTweet(event) {
         event.preventDefault();
+        const { language, theme, link } = event.target;
 
         fetch("/.netlify/functions/image", {
           method: "POST",
-          body: event.target.link.value,
+          headers: {
+            "Content-Type": "application/json;charset=utf-8",
+          },
+          body: JSON.stringify({
+            tweetURL: link.value,
+            language: language.value,
+            theme: theme.value,
+          }),
         })
           .then((response) => {
             if (!response.ok) {

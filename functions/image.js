@@ -7,13 +7,7 @@ const TWEET_HIDE_THREAD = true;
 const TWEET_HIDE_CARD = false;
 
 exports.handler = async function (event, context) {
-  //url theme language
-  const tweetURL =
-    "https://twitter.com/Rainmaker1973/status/1478285768493834240";
-  const theme = "dark";
-  const language = "en";
-
-  console.log("event", event.body);
+  const { language, theme, tweetURL } = JSON.parse(event.body);
 
   const screenshot = await createScreenshot({
     width: TWEET_WIDTH,
