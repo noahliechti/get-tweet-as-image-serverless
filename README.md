@@ -4,9 +4,15 @@
 
 ## Start App
 
+run `npx netlify login` and `npx netlify link` to link your local directory to the remote Netlify project. With this method it will automatically inject the environment variables from Netlify.
+
 ```bash
 npm run serve
 ```
+
+### Environment variables 
+
+`CHROME_EXECUTABLE_PATH=/Applications/Google Chrome.app/Contents/MacOS/Google Chrome` (yours may be different)
 
 ### Valid themes
 
