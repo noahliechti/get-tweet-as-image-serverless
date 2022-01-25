@@ -1,7 +1,14 @@
+// const express = require("express");
+// const app = express();
+
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+
 const chromium = require("chrome-aws-lambda");
 const puppeteer = require("puppeteer-core");
 
 exports.handler = async function (event, context) {
+  console.log("event", event.body);
   const browser = await puppeteer.launch({
     args: chromium.args,
     executablePath:
@@ -24,7 +31,6 @@ exports.handler = async function (event, context) {
   return {
     statusCode: 200,
     body: JSON.stringify({
-      status: "Ok",
       page: {
         title,
         description,
