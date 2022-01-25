@@ -24,4 +24,6 @@ npm run serve
 
 - https://twitter.com/elonmusk/status/1483633282482847744
 
+## Check out my non-serverless repo
+
 [Get tweets in Node.js (non-serverless)](https://github.com/noahliechti/get-tweets-as-image)
