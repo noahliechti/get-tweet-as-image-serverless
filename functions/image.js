@@ -14,6 +14,7 @@ exports.handler = async function (event, context) {
     theme,
     padding: TWEET_PADDING,
     tweetId: getTweetId(tweetURL),
+    tweetURL: tweetURL,
     hideCard: TWEET_HIDE_CARD,
     hideThread: TWEET_HIDE_THREAD,
     language,
@@ -28,10 +29,18 @@ exports.handler = async function (event, context) {
 };
 
 const createScreenshot = async (props) => {
-  try {
-    const { language, width, theme, padding, hideCard, hideThread, tweetId } =
-      props;
+  const {
+    language,
+    width,
+    theme,
+    padding,
+    hideCard,
+    hideThread,
+    tweetId,
+    tweetURL,
+  } = props;
 
+  try {
     const browser = await puppeteer.launch({
       args: chromium.args,
       executablePath:
@@ -81,7 +90,10 @@ const createScreenshot = async (props) => {
 
     return imageBuffer;
   } catch (err) {
-    console.log("Error when creating the image of the tweet: ", err);
+    console.log(
+      `Error when creating the image of the tweet. Check if ${tweetURL} is a valid tweet url`,
+      err
+    );
   }
 };
 

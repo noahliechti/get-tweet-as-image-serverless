@@ -52,6 +52,9 @@
           })
           .then((json) => {
             console.log(json);
+            const img = document.createElement("img");
+            img.src = `data:image/png;base64,${json.image}`;
+            document.body.appendChild(img);
           })
           .catch((error) => {
             console.error(error);
